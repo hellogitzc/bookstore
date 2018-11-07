@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.mapper.BookMapper">
+  <resultMap id="BaseResultMap" type="com.itheima.po.Book">
+    <id column="bookid" jdbcType="INTEGER" property="bookid" />
+    <result column="booktypeid" jdbcType="INTEGER" property="booktypeid" />
+    <result column="bookname" jdbcType="VARCHAR" property="bookname" />
+    <result column="bookpress" jdbcType="VARCHAR" property="bookpress" />
+    <result column="author" jdbcType="VARCHAR" property="author" />
+    <result column="isbn" jdbcType="VARCHAR" property="isbn" />
+    <result column="bookinfo" jdbcType="VARCHAR" property="bookinfo" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="bookpic" jdbcType="VARCHAR" property="bookpic" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    bookid, booktypeid, bookname, bookpress, author, isbn, bookinfo, price, bookpic, 
+    content
+  </sql>
+  <select id="selectByExample" parameterType="com.itheima.po.BookExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from book
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from book
+    where bookid = #{bookid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from book
+    where bookid = #{bookid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.itheima.po.BookExample">
+    delete from book
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.itheima.po.Book">
+    <selectKey keyProperty="bookid" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into book (booktypeid, bookname, bookpress, 
+      author, isbn, bookinfo, 
+      price, bookpic, content
+      )
+    values (#{booktypeid,jdbcType=INTEGER}, #{bookname,jdbcType=VARCHAR}, #{bookpress,jdbcType=VARCHAR}, 
+      #{author,jdbcType=VARCHAR}, #{isbn,jdbcType=VARCHAR}, #{bookinfo,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DECIMAL}, #{bookpic,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.itheima.po.Book">
+    <selectKey keyProperty="bookid" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into book
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="booktypeid != null">
+        booktypeid,
+      </if>
+      <if test="bookname != null">
+        bookname,
+      </if>
+      <if test="bookpress != null">
+        bookpress,
+      </if>
+      <if test="author != null">
+        author,
+      </if>
+      <if test="isbn != null">
+        isbn,
+      </if>
+      <if test="bookinfo != null">
+        bookinfo,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="bookpic != null">
+        bookpic,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="booktypeid != null">
+        #{booktypeid,jdbcType=INTEGER},
+      </if>
+      <if test="bookname != null">
+        #{bookname,jdbcType=VARCHAR},
+      </if>
+      <if test="bookpress != null">
+        #{bookpress,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null">
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="isbn != null">
+        #{isbn,jdbcType=VARCHAR},
+      </if>
+      <if test="bookinfo != null">
+        #{bookinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="bookpic != null">
+        #{bookpic,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.itheima.po.BookExample" resultType="java.lang.Long">
+    select count(*) from book
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+<!-- 通过ID查找书籍 --> 
+ <select id="findBook" parameterType="Integer" resultType="Book">
+   select *
+   from  book
+  where bookid = #{bookid}
+ </select>
+
+  <update id="updateByExampleSelective" parameterType="map">
+    update book
+    <set>
+      <if test="record.bookid != null">
+        bookid = #{record.bookid,jdbcType=INTEGER},
+      </if>
+      <if test="record.booktypeid != null">
+        booktypeid = #{record.booktypeid,jdbcType=INTEGER},
+      </if>
+      <if test="record.bookname != null">
+        bookname = #{record.bookname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bookpress != null">
+        bookpress = #{record.bookpress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.author != null">
+        author = #{record.author,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isbn != null">
+        isbn = #{record.isbn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bookinfo != null">
+        bookinfo = #{record.bookinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null">
+        price = #{record.price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.bookpic != null">
+        bookpic = #{record.bookpic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null">
+        content = #{record.content,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update book
+    set bookid = #{record.bookid,jdbcType=INTEGER},
+      booktypeid = #{record.booktypeid,jdbcType=INTEGER},
+      bookname = #{record.bookname,jdbcType=VARCHAR},
+      bookpress = #{record.bookpress,jdbcType=VARCHAR},
+      author = #{record.author,jdbcType=VARCHAR},
+      isbn = #{record.isbn,jdbcType=VARCHAR},
+      bookinfo = #{record.bookinfo,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=DECIMAL},
+      bookpic = #{record.bookpic,jdbcType=VARCHAR},
+      content = #{record.content,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.itheima.po.Book">
+    update book
+    <set>
+      <if test="booktypeid != null">
+        booktypeid = #{booktypeid,jdbcType=INTEGER},
+      </if>
+      <if test="bookname != null">
+        bookname = #{bookname,jdbcType=VARCHAR},
+      </if>
+      <if test="bookpress != null">
+        bookpress = #{bookpress,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null">
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="isbn != null">
+        isbn = #{isbn,jdbcType=VARCHAR},
+      </if>
+      <if test="bookinfo != null">
+        bookinfo = #{bookinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="bookpic != null">
+        bookpic = #{bookpic,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where bookid = #{bookid,jdbcType=INTEGER}
+  </update>
+ 
+ <!-- 查询所有书籍信息 --> 
+ <select id="selectByPageAndSelections" resultMap="BaseResultMap">
+        SELECT *
+        FROM book
+        ORDER BY bookid
+ </select>
+  <!-- 按照ID降序查找，返回最前面的15条 -->
+<select id="selectByIdDesc" resultMap="BaseResultMap">
+   select *
+   from  book
+   order by bookid desc limit 15
+ </select>
+ 
+ <insert id="addBook" parameterType="Book">
+  insert into book(booktypeid,bookname,bookpress,author,bookinfo,price,bookpic) 
+  values(#{booktypeid},#{bookname},#{bookpress},#{author},#{bookinfo},#{price},#{bookpic})  
+ </insert>
+  <update id="updateByPrimaryKey" parameterType="com.itheima.po.Book">
+    update book
+    set booktypeid = #{booktypeid,jdbcType=INTEGER},
+      bookname = #{bookname,jdbcType=VARCHAR},
+      bookpress = #{bookpress,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      isbn = #{isbn,jdbcType=VARCHAR},
+      bookinfo = #{bookinfo,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      bookpic = #{bookpic,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR}
+    where bookid = #{bookid,jdbcType=INTEGER}
+  </update>
+</mapper>

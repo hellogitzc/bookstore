@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.mapper.BooktypeMapper">
+  <resultMap id="BaseResultMap" type="com.itheima.po.Booktype">
+    <id column="booktypeid" jdbcType="INTEGER" property="booktypeid" />
+    <result column="booktype_name" jdbcType="VARCHAR" property="booktypeName" />
+    <result column="bookid" jdbcType="INTEGER" property="bookid" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    booktypeid, booktype_name, bookid
+  </sql>
+  <select id="selectByExample" parameterType="com.itheima.po.BooktypeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from booktype
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from booktype
+    where booktypeid = #{booktypeid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from booktype
+    where booktypeid = #{booktypeid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.itheima.po.BooktypeExample">
+    delete from booktype
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.itheima.po.Booktype">
+    insert into booktype (booktypeid, booktype_name, bookid
+      )
+    values (#{booktypeid,jdbcType=INTEGER}, #{booktypeName,jdbcType=VARCHAR}, #{bookid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.itheima.po.Booktype">
+    insert into booktype
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="booktypeid != null">
+        booktypeid,
+      </if>
+      <if test="booktypeName != null">
+        booktype_name,
+      </if>
+      <if test="bookid != null">
+        bookid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="booktypeid != null">
+        #{booktypeid,jdbcType=INTEGER},
+      </if>
+      <if test="booktypeName != null">
+        #{booktypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="bookid != null">
+        #{bookid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.itheima.po.BooktypeExample" resultType="java.lang.Long">
+    select count(*) from booktype
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update booktype
+    <set>
+      <if test="record.booktypeid != null">
+        booktypeid = #{record.booktypeid,jdbcType=INTEGER},
+      </if>
+      <if test="record.booktypeName != null">
+        booktype_name = #{record.booktypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bookid != null">
+        bookid = #{record.bookid,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update booktype
+    set booktypeid = #{record.booktypeid,jdbcType=INTEGER},
+      booktype_name = #{record.booktypeName,jdbcType=VARCHAR},
+      bookid = #{record.bookid,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.itheima.po.Booktype">
+    update booktype
+    <set>
+      <if test="booktypeName != null">
+        booktype_name = #{booktypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="bookid != null">
+        bookid = #{bookid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where booktypeid = #{booktypeid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.itheima.po.Booktype">
+    update booktype
+    set booktype_name = #{booktypeName,jdbcType=VARCHAR},
+      bookid = #{bookid,jdbcType=INTEGER}
+    where booktypeid = #{booktypeid,jdbcType=INTEGER}
+  </update>
+</mapper>

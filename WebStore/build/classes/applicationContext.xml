@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    					http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+    					http://www.springframework.org/schema/tx
+    					http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+    					http://www.springframework.org/schema/context
+    					http://www.springframework.org/schema/context/spring-context-4.3.xsd
+    					http://www.springframework.org/schema/aop
+    					http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">				
+	<context:property-placeholder location="classpath:db.properties"/>
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+        <!-- 基本属性 url、user、password -->
+         <property name="driverClassName" value="${jdbc.driver}"></property>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+ 
+        <!-- 配置初始化大小、最小、最大 -->
+        <property name="initialSize" value="${jdbc.initialSize}" />
+        <property name="minIdle" value="${jdbc.minIdle}" />
+        <property name="maxTotal" value="${jdbc.maxTotal}" />
+       
+    </bean>
+     <!-- 对dataSource 数据源进行事务管理 -->
+     <bean id="transactionManager" 
+     class="org.springframework.jdbc.datasource.DataSourceTransactionManager" >
+     <property name="dataSource" ref="dataSource" />
+     </bean>
+   
+      <!-- 启用对事务注解的支持 -->
+	 <tx:annotation-driven transaction-manager="transactionManager" />
+	   
+    <!-- mybatis文件配置，扫描所有mapper文件 -->
+    <bean id="sqlSessionFactory" 
+                class="org.mybatis.spring.SqlSessionFactoryBean">
+                <property name="dataSource" ref="dataSource"/>
+               <property name="configLocation" value="classpath:mybatis-config.xml"/>   
+    </bean>
+                
+     <!--配置mapper扫描器  -->
+     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+            <property name="basePackage" value="com.itheima.mapper"/>
+     
+     </bean>
+     <!-- 扫描Service -->
+     <context:component-scan base-package="com.itheima.service"></context:component-scan>
+     
+</beans>

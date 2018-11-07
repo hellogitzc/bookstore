@@ -1,0 +1,60 @@
+ .success
+        {
+            background-image: url("picture/li_ok.gif");
+            background-color:#E6FEE4;
+            border-color:#01BE00;
+            background-repeat: no-repeat;
+            background-position: left 2px;
+            padding:0 18px;
+        }
+        .danger
+        {
+            background-image: url("picture/li_err.gif");
+            background-color:#FFF2E5;
+            border-color:#FF3300;
+            background-repeat: no-repeat;
+            background-position: left 2px;
+            padding:0 18px;
+        }
+        .nav
+        {
+            width: 650px;
+            margin: 50px auto;
+        }
+        .nav1
+        {
+            border: 1px solid #666666;
+            border-radius: 5px;
+        }
+        i
+        {
+            font-size: 12px;
+            color: #999999;
+        }
+        label
+        {
+            width: 150px;
+            height: 30px;
+            line-height: 30px;
+            text-align: right;
+            font-size: 14px;
+            display: inline-block;
+        }
+        span
+        {
+            background-color:#FFFFDA ;
+            border: 1px solid #FFCD00;
+            font-size: 12px;
+            height: 20px;
+            line-height: 20px;
+            display: inline-block;
+            margin-left: 40px ;
+
+        }
+        button
+        {
+            margin-left: 159px;
+            border: dashed 1px transparent;
+            background-color: transparent;
+            cursor: pointer;
+        }
