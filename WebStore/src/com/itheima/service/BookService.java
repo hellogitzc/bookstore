@@ -18,4 +18,6 @@ public interface BookService {
 	
     public List<Book> selectByPageAndSelections();
      public List<Book> selectByIdDesc();
+
+	public List<Book> SelectByBookTypeId(Integer  booktypeid);
 }

@@ -9,13 +9,19 @@
 <title>书籍列表</title>
 </head>
 <body>
+<jsp:include page="head.jsp"></jsp:include>
        <div class="danpin center">
 			
 			<div class="biaoti center">书籍列表</div>
 		    <div class="main center">
+		     <%
+                 int i=1;
+              %>
 		    <c:forEach begin="0" step="1" items="${bookList}" var="book" varStatus="booklist">
+		      
 			<div class="mingxing fl">
-					<div class="sub_mingxing"><a href=""><img src="${pageContext.request.contextPath}/${book.bookpic}" alt="" width="150px" height="200px"></a></div>
+					<div class="sub_mingxing"><a href="${pageContext.request.contextPath}/findBook.action?bookid=${book.bookid}">
+					                           <img src="${pageContext.request.contextPath}/${book.bookpic}" alt="" width="150px" height="200px"></a></div>
 					<div class="pinpai"><a href="">${book.bookname}</a></div>
 					
 					<div class="jiage">${book.price}元</div>
@@ -26,16 +32,20 @@
 							</a>
 						</div>
 				</div>
+				 <% if(i%5 ==0){
+					 %><div class="clear"></div><%}
+				 i++; %>
 				</c:forEach>
-				 
-       
 	   </div>
+	   <br><br>
 	   <center>
+	   <font size="4px">
 	    <p>一共${page.pages}页</p>
 	    <a href="bookList?page=${page.firstPage}">第一页</a>
         <a href="bookList?page=${page.nextPage}">下一页</a>
         <a href="bookList?page=${page.prePage}">上一页</a>
         <a href="bookList?page=${page.lastPage}">最后页</a>
+        </font>
         </center>
 	   </div>
 	 

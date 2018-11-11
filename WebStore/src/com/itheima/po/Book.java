@@ -2,107 +2,101 @@ package com.itheima.po;
 
 import java.math.BigDecimal;
 
-import org.springframework.web.multipart.MultipartFile;
+
 
 public class Book {
-    private Integer bookid;
 
-    private Integer booktypeid;
+	private Integer bookid;
+	private Integer booktypeid;
+	private String bookname;
+	private String bookpress;
+	private String author;
+	private String isbn;
+	private String bookinfo;
+	private BigDecimal price;
+	private String bookpic;
+	private String content;
 
-    private String bookname;
+	public Integer getBookid() {
+		return bookid;
+	}
 
-    private String bookpress;
+	public void setBookid(Integer bookid) {
+		this.bookid = bookid;
+	}
 
-    private String author;
+	public Integer getBooktypeid() {
+		return booktypeid;
+	}
 
-    private String isbn;
+	public void setBooktypeid(Integer booktypeid) {
+		this.booktypeid = booktypeid;
+	}
 
-    private String bookinfo;
+	public String getBookname() {
+		return bookname;
+	}
 
-    private BigDecimal price;
+	public void setBookname(String bookname) {
+		this.bookname = bookname == null ? null : bookname.trim();
+	}
 
-    private String bookpic;
+	public String getBookpress() {
+		return bookpress;
+	}
 
-    private String content;
-    public Integer getBookid() {
-        return bookid;
-    }
+	public void setBookpress(String bookpress) {
+		this.bookpress = bookpress == null ? null : bookpress.trim();
+	}
 
-    public void setBookid(Integer bookid) {
-        this.bookid = bookid;
-    }
+	public String getAuthor() {
+		return author;
+	}
 
-    public Integer getBooktypeid() {
-        return booktypeid;
-    }
+	public void setAuthor(String author) {
+		this.author = author == null ? null : author.trim();
+	}
 
-    public void setBooktypeid(Integer booktypeid) {
-        this.booktypeid = booktypeid;
-    }
+	public String getIsbn() {
+		return isbn;
+	}
 
-    public String getBookname() {
-        return bookname;
-    }
+	public void setIsbn(String isbn) {
+		this.isbn = isbn == null ? null : isbn.trim();
+	}
 
-    public void setBookname(String bookname) {
-        this.bookname = bookname == null ? null : bookname.trim();
-    }
+	public String getBookinfo() {
+		return bookinfo;
+	}
 
-    public String getBookpress() {
-        return bookpress;
-    }
+	public void setBookinfo(String bookinfo) {
+		this.bookinfo = bookinfo == null ? null : bookinfo.trim();
+	}
 
-    public void setBookpress(String bookpress) {
-        this.bookpress = bookpress == null ? null : bookpress.trim();
-    }
+	public BigDecimal getPrice() {
+		return price;
+	}
 
-    public String getAuthor() {
-        return author;
-    }
+	public void setPrice(BigDecimal price) {
+		this.price = price;
+	}
 
-    public void setAuthor(String author) {
-        this.author = author == null ? null : author.trim();
-    }
+	public String getBookpic() {
+		return bookpic;
+	}
 
-    public String getIsbn() {
-        return isbn;
-    }
+	public void setBookpic(String bookpic) {
+		this.bookpic = bookpic == null ? null : bookpic.trim();
+	}
 
-    public void setIsbn(String isbn) {
-        this.isbn = isbn == null ? null : isbn.trim();
-    }
+	public String getContent() {
+		return content;
+	}
 
-    public String getBookinfo() {
-        return bookinfo;
-    }
-
-    public void setBookinfo(String bookinfo) {
-        this.bookinfo = bookinfo == null ? null : bookinfo.trim();
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public String getBookpic() {
-        return bookpic;
-    }
-
-    public void setBookpic(String bookpic) {
-        this.bookpic = bookpic == null ? null : bookpic.trim();
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content == null ? null : content.trim();
-    }
-
+	public void setContent(String content) {
+		this.content = content == null ? null : content.trim();
+	}
+    
+	
 
 }

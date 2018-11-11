@@ -1,0 +1,5 @@
+.gwc_num{border: 1px solid black;width: 110px;line-height: 30px;overflow: hidden;margin-top:47px;}
+.gwc_num em{display: block;height: 30px;width: 26px;float: left;color: black;border-right: 1px solid black;text-align: center;cursor: pointer;}
+.gwc_num .numb{display: block;float: left;text-align: center;width: 52px;font-style: normal;font-size: 15px;line-height: 24px;border: 0;margin-top:2px}
+.gwc_num em.add1{float: right;border-right: 0;border-left: 1px solid black;}
+.gw_num em.jian1{float: left;border-left: 0;border-right: 1px solid black;}

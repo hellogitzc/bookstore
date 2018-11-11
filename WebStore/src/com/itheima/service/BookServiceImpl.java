@@ -48,4 +48,10 @@ public List<Book> selectByIdDesc() {
 	return this.bookMapper.selectByIdDesc();
 }
 
+@Override
+public List<Book> SelectByBookTypeId(Integer booktypeid) {
+	// TODO Auto-generated method stub
+	return this.bookMapper.SelectByBookTypeId(booktypeid);
+}
+
 }

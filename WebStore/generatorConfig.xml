@@ -31,11 +31,8 @@
      </javaClientGenerator>
      
      <!-- 指定数据库表 -->
+  
     <table schema="" tableName="book">
-    <!-- 标识列  column="列名" sqlStatement="某种数据库语言" identity="作为主键" -->  
-            <generatedKey column="bookid" sqlStatement="MySql" identity="true" />  
-      </table>
-    <table schema="" tableName="booktype">
     <!-- 标识列  column="列名" sqlStatement="某种数据库语言" identity="作为主键" -->  
             <generatedKey column="id" sqlStatement="MySql" identity="true" />  
       

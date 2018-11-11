@@ -90,7 +90,7 @@
 				<script type="text/javascript"> alert('${msg}');</script>
 				</c:if>
 				<c:if test="${not empty user.username}">
-					<div class="gouwuche fr"><a href="">购物车</a></div>
+					<div class="gouwuche fr"><a href="${pageContext.request.contextPath}/searchCart?userid=${user.userid}">购物车</a></div>
 					<div class="fr">
 						<ul>
 						    <li>${user.username},您好!欢迎光临叮当网上书店</li>
@@ -130,13 +130,13 @@
 			<div class="ad_top fl"></div>
 			<div class="nav fl">
 				<ul>
-					<li><a href="" target="_blank">全部图书</a></li>
-					<li><a href="">IT</a></li>
-					<li><a href="">幼教</a></li>
-					
-					<li><a href="">历史</a></li>
-					<li><a href="">教材</a></li>
-					<li><a href=""></a></li>
+					<li><a href="${pageContext.request.contextPath}/bookList.action" target="_blank">全部图书</a></li>
+					<li><a href="${pageContext.request.contextPath}/selectByBookType?booktypeid=1">IT技术</a></li>
+					<li><a href="${pageContext.request.contextPath}/selectByBookType?booktypeid=2">幼儿童书</a></li>					
+					<li><a href="${pageContext.request.contextPath}/selectByBookType?booktypeid=3">小说传记</a></li>
+					<li><a href="${pageContext.request.contextPath}/selectByBookType?booktypeid=4">经济管理</a></li>
+					<li><a href="${pageContext.request.contextPath}/selectByBookType?booktypeid=5">教辅资料</a></li>
+					<li><a href="${pageContext.request.contextPath}/selectByBookType?booktypeid=6">经典名著</a></li>
 				</ul>
 			</div>
 			<div class="search fr">

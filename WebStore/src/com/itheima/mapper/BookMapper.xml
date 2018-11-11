@@ -106,24 +106,21 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.itheima.po.Book">
-    <selectKey keyProperty="bookid" order="AFTER" resultType="java.lang.Integer">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into book (booktypeid, bookname, bookpress, 
-      author, isbn, bookinfo, 
-      price, bookpic, content
-      )
-    values (#{booktypeid,jdbcType=INTEGER}, #{bookname,jdbcType=VARCHAR}, #{bookpress,jdbcType=VARCHAR}, 
-      #{author,jdbcType=VARCHAR}, #{isbn,jdbcType=VARCHAR}, #{bookinfo,jdbcType=VARCHAR}, 
-      #{price,jdbcType=DECIMAL}, #{bookpic,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}
-      )
+    insert into book (bookid, booktypeid, bookname, 
+      bookpress, author, isbn, 
+      bookinfo, price, bookpic, 
+      content)
+    values (#{bookid,jdbcType=INTEGER}, #{booktypeid,jdbcType=INTEGER}, #{bookname,jdbcType=VARCHAR}, 
+      #{bookpress,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, #{isbn,jdbcType=VARCHAR}, 
+      #{bookinfo,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{bookpic,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.itheima.po.Book">
-    <selectKey keyProperty="bookid" order="AFTER" resultType="java.lang.Integer">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
     insert into book
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bookid != null">
+        bookid,
+      </if>
       <if test="booktypeid != null">
         booktypeid,
       </if>
@@ -153,6 +150,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bookid != null">
+        #{bookid,jdbcType=INTEGER},
+      </if>
       <if test="booktypeid != null">
         #{booktypeid,jdbcType=INTEGER},
       </if>
@@ -188,13 +188,6 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-<!-- 通过ID查找书籍 --> 
- <select id="findBook" parameterType="Integer" resultType="Book">
-   select *
-   from  book
-  where bookid = #{bookid}
- </select>
-
   <update id="updateByExampleSelective" parameterType="map">
     update book
     <set>
@@ -282,24 +275,6 @@
     </set>
     where bookid = #{bookid,jdbcType=INTEGER}
   </update>
- 
- <!-- 查询所有书籍信息 --> 
- <select id="selectByPageAndSelections" resultMap="BaseResultMap">
-        SELECT *
-        FROM book
-        ORDER BY bookid
- </select>
-  <!-- 按照ID降序查找，返回最前面的15条 -->
-<select id="selectByIdDesc" resultMap="BaseResultMap">
-   select *
-   from  book
-   order by bookid desc limit 15
- </select>
- 
- <insert id="addBook" parameterType="Book">
-  insert into book(booktypeid,bookname,bookpress,author,bookinfo,price,bookpic) 
-  values(#{booktypeid},#{bookname},#{bookpress},#{author},#{bookinfo},#{price},#{bookpic})  
- </insert>
   <update id="updateByPrimaryKey" parameterType="com.itheima.po.Book">
     update book
     set booktypeid = #{booktypeid,jdbcType=INTEGER},
@@ -313,4 +288,34 @@
       content = #{content,jdbcType=VARCHAR}
     where bookid = #{bookid,jdbcType=INTEGER}
   </update>
+
+<!-- 通过ID查找书籍 --> 
+ <select id="findBook" parameterType="Integer" resultType="Book">
+   select *
+   from  book
+  where bookid = #{bookid}
+ </select>
+ 
+ <!-- 查询所有书籍信息 --> 
+ <select id="selectByPageAndSelections" resultMap="BaseResultMap">
+        SELECT *
+        FROM book
+        ORDER BY bookid
+ </select>
+  <!-- 按照ID降序查找，返回最前面的15条 -->
+<select id="selectByIdDesc" resultMap="BaseResultMap">
+   select *
+   from  book
+   order by bookid desc limit 15
+ </select>
+   <select id="SelectByBookTypeId" resultMap="BaseResultMap">
+    select * 
+    from book
+    where booktypeid =#{booktypeid}
+  </select>
+ <insert id="addBook" parameterType="Book">
+  insert into book(booktypeid,bookname,bookpress,author,bookinfo,price,bookpic) 
+  values(#{booktypeid},#{bookname},#{bookpress},#{author},#{bookinfo},#{price},#{bookpic})  
+ </insert>
+ 
 </mapper>

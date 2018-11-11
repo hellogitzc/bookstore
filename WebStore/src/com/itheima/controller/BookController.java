@@ -29,7 +29,7 @@ public class BookController {
 	
 	@RequestMapping(value = "/addbook.action")
 	public String addBook(Book book1,Model model,HttpSession session){
-		   System.out.println(book1.getBookpic());
+		   
 //		    Book book = bookService.addBook(book1);		
 //	
 //			if(book!=null){
@@ -65,20 +65,20 @@ public class BookController {
           book.setBookpic(sqlPath);  
           bookService.addBook(book);      
           model.addAttribute("book", book);  
-      return "index";  
+          return "addBook";  
       }
 
 	@RequestMapping("/findBook.action")
 	public String findBookById(Integer bookid,Model model,HttpSession session){
-		    System.out.println(bookid);
+		    
 		    Book book = bookService.findBook(bookid);		
-	
+	        book.setBookid(bookid);//因为条件是按bookid查询的，所以返回的值里没有bookid，这里再次把它加回去
 			if(book!=null){
 				model.addAttribute("book", book);
-				return "booklist";
+				return "bookdetial";
 				}
 		
-			return "";
+			return " ";
 	}
 	
 	@RequestMapping("/index")
@@ -94,10 +94,24 @@ public class BookController {
 	}
 	
 	@RequestMapping("/bookList")
-	  public String userList(@RequestParam(required=true,defaultValue="1") Integer page,HttpServletRequest request,Model model){
+	  public String bookList(@RequestParam(required=true,defaultValue="1") Integer page,HttpServletRequest request,Model model){
 	      //PageHelper.startPage(page, pageSize);这段代码表示，程序开始分页了，page默认值是1，pageSize默认是10，意思是从第1页开始，每页显示10条记录。
-	      PageHelper.startPage(page, 2);
+	      PageHelper.startPage(page, 15);
 	      List<Book> bookList = bookService.selectByPageAndSelections();
+	      PageInfo<Book> p=new PageInfo<Book>(bookList);
+	      model.addAttribute("page", p);
+	      model.addAttribute("bookList",bookList);
+	      return "booklist";
+	  }
+	
+	
+	@RequestMapping("/selectByBookType")
+	  public String SelectByBookTypeId(@RequestParam(required=true,defaultValue="1") Integer page,
+			  HttpServletRequest request,Model model,Integer  booktypeid){
+	      //PageHelper.startPage(page, pageSize);这段代码表示，程序开始分页了，page默认值是1，pageSize默认是10，意思是从第1页开始，每页显示10条记录。
+	      PageHelper.startPage(page, 15);
+	      System.out.println(booktypeid);
+	      List<Book> bookList = bookService.SelectByBookTypeId(booktypeid);
 	      PageInfo<Book> p=new PageInfo<Book>(bookList);
 	      model.addAttribute("page", p);
 	      model.addAttribute("bookList",bookList);

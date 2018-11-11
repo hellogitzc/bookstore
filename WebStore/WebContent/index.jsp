@@ -50,7 +50,7 @@
 		
 		<div class="danpin center">
 			
-			<div class="biaoti center">新书推荐</div>
+			<div class="biaoti center">新书推荐</div>
 			<div class="main center">
 			  <%
                  int i=1;
@@ -59,9 +59,9 @@
 				
 				 
 			<div class="mingxing fl">
-					<div class="sub_mingxing"><a href=""><img src="${pageContext.request.contextPath}/${book.bookpic}" alt="" width="150px" height="200px"></a></div>
+					<div class="sub_mingxing"><a href="${pageContext.request.contextPath}/findBook.action?bookid=${book.bookid}">
+					<img src="${pageContext.request.contextPath}/${book.bookpic}" alt="" width="180px" height="180px"></a></div>
 					<div class="pinpai"><a href="">${book.bookname}</a></div>
-					
 					<div class="jiage">${book.price}元</div>
 					<div class="fu">
 							<a href="">
@@ -78,5 +78,8 @@
 			
 			</div>
 		</div>
+		<footer class="mt20 center">			
+			
+		</footer>
 </body>
 </html>

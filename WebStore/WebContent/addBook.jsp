@@ -16,6 +16,7 @@
       <option value="3">小说传记</option>
       <option value="4">经管</option>
       <option value="5">教辅资料</option>
+      <option value="6">经典名著</option>
      </select><br><br>
      
        书名：<input type="text" name="bookname"><br><br>
@@ -26,8 +27,8 @@
         图片：   <input type="file" name="file"><br><br>
       <input type="submit" value="提交">   
        </form>
-
- 
+       
+       <img alt="" src="${pageContext.request.contextPath}/${book.bookpic}" width="150px" height="200px">
 </center>
 
 </body>
