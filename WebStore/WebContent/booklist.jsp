@@ -14,6 +14,10 @@
 			
 			<div class="biaoti center">书籍列表</div>
 		    <div class="main center">
+		    <c:if test="${empty bookList }">
+		    <font size="20px" color="red">抱歉。没有找到该书</font>
+		    
+		    </c:if>
 		     <%
                  int i=1;
               %>

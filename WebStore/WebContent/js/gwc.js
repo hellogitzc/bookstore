@@ -106,6 +106,7 @@ $(function () {
 
         console.log(total_money,total_count);
     }
-       
+    
+    
     
 });

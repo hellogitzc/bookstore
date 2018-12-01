@@ -1,0 +1,342 @@
+ul,li,p,dl,dd,h1,h2,h3,h4,h5,h6 {
+	padding:0;
+	margin:0
+}
+ul,li,ol {
+	list-style:none
+}
+em {
+	font-style:normal
+}
+.icon-checkbox {
+	display:inline-block;
+	width:14px;
+	height:14px;
+	line-height:14px;
+	font-size:14px;
+	font-weight:bold;
+	text-align:center;
+	border:1px solid #8c8c8c;
+	background:#fff;
+	vertical-align:middle;
+	color:#fff
+}
+.icon-checkbox-checked {
+	color:#90ce36
+}
+.checkout-box {
+	background:#fff
+}
+.checkout-box .checkout-box-ft {
+	padding-top:10px
+}
+.checkout-box .xm-box {
+	border:none;
+	margin-bottom:20px
+}
+.checkout-box .xm-box .box-hd {
+	height:44px;
+	padding-top:6px;
+	margin-bottom:20px
+}
+.checkout-box .xm-box .box-hd .title {
+	margin:0;
+	line-height:44px
+}
+.addr-list-toggle-wrap {
+	display:block;
+	height:20px;
+	margin-top:20px;
+	text-align:center;
+	border-top:1px solid #dfdfdf;
+	zoom:1;
+	position:relative
+}
+.addr-list-toggle-wrap span {
+	display:block;
+	width:98px;
+	height:18px;
+	line-height:1;
+	border:1px solid #dfdfdf;
+	border-top:1px solid #fff;
+	cursor:pointer;
+	position:absolute;
+	top:-1px;
+	left:50%;
+	margin-left:-50px;
+	text-align:center
+}
+.addr-list-toggle-wrap span .arrow {
+	font-size:16px
+}
+.addr-list-toggle-wrap .on .arrow {
+	display:inline-block;
+	-webkit-transform:rotate(180deg);
+	-moz-transform:rotate(180deg);
+	-ms-transform:rotate(180deg);
+	-o-transform:rotate(180deg);
+	transform:rotate(180deg)
+}
+.xm-address-list {
+	margin-left:-10px
+}
+.xm-address-list .item {
+	float:left;
+	_display:inline;
+	width:254px;
+	height:160px;
+	padding:15px 18px;
+	position:relative;
+	border:1px solid #dfdfdf;
+	margin:0 0 10px 10px;
+	cursor:pointer;
+	background:#fafafa
+}
+.xm-address-list .item:hover {
+	
+}
+.xm-address-list .item .edit-btn {
+	display:none;
+	width:115px;
+	height:25px;
+	margin-top:8px;
+}
+.xm-address-list .item .edit-btn1 {
+	display:none;
+	width:115px;
+	height:25px;
+	margin-top:8px;
+}
+.J_editAddr{
+	width:53px;
+	heigth:10px;
+	line-height:20px;
+	text-align:center;
+	font-size:12px;
+	cursor:pointer;
+}
+
+.J_delAddr{
+	width:53px;
+	heigth:10px;
+	margin-left:5px;
+	line-height:20px;
+	text-align:center;
+	font-size:12px;
+	cursor:pointer;
+}
+.xm-address-list .item dt {
+	margin:0;
+	height:30px;
+	line-height:30px;
+	margin-bottom:10px;
+	border-bottom:1px solid #dfdfdf;
+	color:#333
+}
+.xm-address-list .item dt strong {
+	float:left;
+	font-weight:400
+}
+.xm-address-list .item dt span {
+	float:right
+}
+.xm-address-list .item dt .tag {
+	height:18px;
+	line-height:18px;
+	margin-top:6px;
+	padding:0 10px;
+	font-size:12px;
+	background:#dfdfdf
+}
+.xm-address-list .item dd {
+	margin:0;
+	line-height:1.6;
+	color:#6d6d6d
+}
+.xm-address-list .item dd .tel {
+	color:#333
+}
+.xm-address-list .selected {
+	border-color:#ff4646;
+	background:#fff;
+	cursor:default
+}
+.xm-address-list .selected:hover {
+	background:#fff
+}
+.xm-address-list .selected .edit-btn {
+	display:block;
+	background:#f3f3f3
+}
+.xm-address-list .selected .edit-btn1 {
+	display:block;
+	background:#f3f3f3
+}
+
+
+.xm-address-list .use-new-addr {
+	text-align:center;
+	color:#8c8c8c
+}
+.xm-address-list .use-new-addr .icon-add {
+	display:block;
+	margin-top:37px;
+	font-size:36px;
+	line-height:1;
+	font-weight:normal
+}
+.xm-edit-addr-backdrop {
+	display:none;
+	width:100%;
+	height:100%;
+	position:absolute;
+	top:0;
+	left:0;
+	background:#000;
+	opacity:.3;
+	filter:alpha(opacity=30);
+	z-index:1040
+}
+.xm-edit-addr-box {
+	display:none;
+	width:300px;
+	position:absolute;
+	background:#fff;
+	border:1px solid #ff4646;
+	z-index:1050
+}
+.xm-edit-addr-box .bd {
+	padding:20px
+}
+.xm-edit-addr-box .bd .item {
+	margin-bottom:10px
+}
+.xm-edit-addr-box .bd .item label {
+	display:none;
+	margin-bottom:5px
+}
+.xm-edit-addr-box .bd .item label span {
+	color:#ee330a
+}
+.xm-edit-addr-box .bd .item .input2,.xm-edit-addr-box .bd .item .input-area {
+	width:240px;
+	background:#fff;
+	border:1px solid #dfdfdf;
+	color:#333
+}
+.xm-edit-addr-box .bd .item .input2:focus,.xm-edit-addr-box .bd .item .input-area:focus {
+	border-color:#ff4646;
+	outline:none
+}
+.xm-edit-addr-box .bd .item .input2 {
+	height:28px;
+	line-height:28px;
+	padding:0 10px
+}
+.xm-edit-addr-box .bd .item .input-area {
+	height:40px;
+	line-height:20px;
+	padding:5px 10px
+}
+.xm-edit-addr-box .bd .item .xm-ph-blur {
+	color:#8c8c8c
+}
+.xm-edit-addr-box .bd .item select {
+
+	margin-right:5px;
+	margin-bottom:8px
+}
+.xm-edit-addr-box .bd .item .select-1,.xm-edit-addr-box .bd .item .select-2 {
+	width:124px
+}
+.xm-edit-addr-box .bd .item .select-2 {
+	margin-right:0
+}
+.xm-edit-addr-box .bd .item .select-3 {
+	width:260px;
+	margin-right:0
+}
+.xm-edit-addr-box .bd .item .zipcode-tip {
+	margin:5px 0 0;
+	font-size:12px;
+	color:#8c8c8c
+}
+.xm-edit-addr-box .bd .item .tel-modify-tip {
+	display:none;
+	margin-top:5px;
+	color:#8c8c8c;
+	font-size:12px
+}
+.xm-edit-addr-box .bd .item .tel-modify-tip em {
+	color:#ee330a
+}
+.xm-edit-addr-box .bd .item .tip-msg {
+	display:none;
+	margin-top:5px;
+	color:#f32f39;
+	font-size:12px
+}
+.xm-edit-addr-box .ft {
+	padding:20px;
+	background:#fafafa;
+	text-align:center
+}
+.xm-edit-addr-box .ft .btn {
+	width:124px
+}
+.xm-edit-addr-box .ft .btn-lineDake {
+	float:left;
+	border-color:#dfdfdf;
+	
+}
+.xm-edit-addr-box .ft .btn-primary {
+	float:right;
+	
+}
+@media (max-width:1200px) {
+	.xm-address-list .item {
+	width:265px
+}
+}.xm-address-list .tip {
+	margin:0 0 10px 10px;
+	color:#d6313a
+}
+.checkout-option-list li {
+	float:left;
+	min-width:125px;
+	_width:125px;
+	padding:15px 30px;
+	border:1px solid #dfdfdf;
+	margin-right:10px;
+	background:#fafafa;
+	cursor:pointer;
+	white-space:nowrap
+}
+.checkout-option-list li:hover {
+	background:#f3f3f3
+}
+.checkout-option-list li input {
+	display:none
+}
+.checkout-option-list li p {
+	color:#333
+}
+.checkout-option-list li p span {
+	display:block;
+	line-height:1.2;
+	color:#6d6d6d;
+	font-size:12px
+}
+.checkout-option-list .selected {
+	border-color:#ff4646;
+	background:#fff
+}
+.checkout-option-list .selected:hover {
+	background:#fff
+}
+.e-invoice-tip {
+	margin-top:10px;
+	font-size:12px;
+	color:#6d6d6d
+}
+}

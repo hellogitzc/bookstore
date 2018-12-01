@@ -10,6 +10,7 @@
     <result column="bookname" jdbcType="VARCHAR" property="bookname" />
     <result column="price" jdbcType="DECIMAL" property="price" />
     <result column="bookpic" jdbcType="VARCHAR" property="bookpic" />
+    <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -243,23 +244,23 @@
   </update>
   <insert id="addCart" parameterType="com.itheima.po.Cart">
     insert into cart (userid, bookid, num, 
-      sum, bookname, price, bookpic
+      sum, bookname, price, bookpic,status
       )
     values (#{userid,jdbcType=INTEGER}, #{bookid,jdbcType=INTEGER}, #{num,jdbcType=INTEGER}, 
-      #{sum,jdbcType=DECIMAL}, #{bookname,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL},#{bookpic,jdbcType=VARCHAR}
+      #{sum,jdbcType=DECIMAL}, #{bookname,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL},#{bookpic,jdbcType=VARCHAR},#{status,jdbcType=INTEGER}
       )
   </insert>
   
   <select id="searchCart" parameterType="com.itheima.po.CartKey" resultMap="BaseResultMap">
     select *
     from cart
-    where userid = #{userid}
+    where userid = #{userid} and status=0
     order by id desc
   </select>
    <select id="check" parameterType="com.itheima.po.CartKey" resultMap="BaseResultMap">
     select *
     from cart
-    where userid = #{userid} and bookid= #{bookid}
+    where userid = #{userid} and bookid= #{bookid} and status=0
   </select>
   <update id="updateNum">
     update cart
@@ -268,13 +269,37 @@
         sum = sum + #{sum}
     </set>
     
-    where userid = #{userid} and bookid= #{bookid}
+    where userid = #{userid} and bookid= #{bookid} and status=0
+  
+  </update>
+  
+   <update id="updateSumAndNum">
+    update cart
+    <set>
+        num = #{num},
+        sum = #{sum}
+    </set>
+    
+    where userid = #{userid} and bookid= #{bookid} and status=0
   
   </update>
   <delete id="deleteItems">
   
     delete
     from cart
-     where userid = #{userid} and bookid= #{bookid}
+     where userid = #{userid} and bookid= #{bookid} and status=0
   </delete>
+  
+   <select id="selectById" parameterType="Integer" resultMap="BaseResultMap">
+    select *
+    from cart
+    where id = #{id}
+  </select>
+  <update id="updateStatus">
+    update cart
+    <set>
+       status=1
+    </set>
+    where id =#{id}
+  </update>
 </mapper>

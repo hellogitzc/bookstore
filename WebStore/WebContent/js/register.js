@@ -95,7 +95,6 @@
             	$.ajax({ //一个Ajax过程
         		type: "post", //以post方式与后台沟通
         		url :"/WebStore/checkUserName.action", //与此页面沟通
-        		
         		data: 'username='+userName.value, //发给的数据
         		cache: false,//禁用缓存
         		async:false,

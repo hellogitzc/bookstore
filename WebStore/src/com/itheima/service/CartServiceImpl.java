@@ -1,6 +1,6 @@
 package com.itheima.service;
 
-import java.math.BigDecimal;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +51,27 @@ public class CartServiceImpl implements CartService{
 		// TODO Auto-generated method stub
 		this.cartMapper.deleteItems(userid,bookid);
 	}
+
+	@Override
+	public void updateSumAndNum(Integer userid, Integer bookid, Integer num, Float sum) {
+		// TODO Auto-generated method stub
+		this.cartMapper.updateSumAndNum(userid,bookid,num,sum);
+	}
+
+	@Override
+	public Cart selectCartById(Integer id) {
+		// TODO Auto-generated method stub
+		return cartMapper.selectById(id);
+	}
+
+	@Override
+	public int updateStatus(Integer id) {
+		// TODO Auto-generated method stub
+		return this.cartMapper.updateStatus(id);
+	}
+
+	
+	
 
 	
 

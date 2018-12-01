@@ -36,9 +36,9 @@ public class UserServiceImpl implements UserService{
 	  this.userMapper.register(user);
 	}
 	@Override
-	public User user_info(String username) {
+	public User user_info(Integer userid) {
 		// TODO Auto-generated method stub
-		return this.userMapper.user_info(username);
+		return this.userMapper.user_info(userid);
 	}
 	
 	@Override
@@ -52,4 +52,5 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		return this.userMapper.update(user);
 	}
+	
 }

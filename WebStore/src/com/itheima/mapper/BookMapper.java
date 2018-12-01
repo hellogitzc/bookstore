@@ -36,4 +36,6 @@ public interface BookMapper {
 	List<Book> selectByIdDesc();
 
 	List<Book> SelectByBookTypeId(@Param("booktypeid")Integer booktypeid);
+
+	List<Book> selectByName(@Param("bookname")String bookname);
 }

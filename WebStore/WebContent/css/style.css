@@ -38,7 +38,7 @@ header .top .right .gouwuche:hover{color:#000;background: #666;}
 /*banner_x*/
 .banner_x {width: 1226px;height: 100px;}
 
-.banner_x .ad_top{width: 230px;height: 100px;background: url('../picture/logo.jpg') no-repeat center center;}
+.banner_x .ad_top{width: 230px;height: 100px;background:url('../picture/logo.jpg') no-repeat center center;}
 .banner_x .nav ul li{float: left;height: 100px;line-height: 100px;}
 .banner_x .nav ul li a{display:inline-block;color: #000;font-size: 16px;padding: 0 10px;}
 .banner_x .nav ul li a:hover{color: rgb(255,103,0); }
@@ -233,8 +233,9 @@ header .top .right .gouwuche:hover{color:#000;background: #666;}
 .grzxbj .selfinfo .lfnav .ddzx{width: 234px;height: 40px;line-height: 40px;font-size: 19px; margin:30px 20px 10px 40px;color:rgb(51,51,51);}
 .grzxbj .selfinfo .lfnav .subddzx ul li{display: block;width: 194px;height: 40px;line-height: 40px;padding-left: 40px;}
 .grzxbj .selfinfo .lfnav .subddzx ul li a{color:rgb(117,117,117);}
+.grzxbj .selfinfo .lfnav .subddzx ul li a .selected{color: #ff6700; font-weight: bold}
 .grzxbj .selfinfo .lfnav .subddzx ul li a:hover{color:rgb(51,51,51);}
-.grzxbj .selfinfo .rtcont{width: 978px;height: 500px;background: #fff;}
+.grzxbj .selfinfo .rtcont{width: 978px;height: 500px;background: #fff;overflow-y:auto}
 .grzxbj .selfinfo .rtcont .ddzxbt{width: 938px;height: 60px;line-height: 60px;font-size: 22px;font-weight:bold;color:rgb(117,117,117);padding-left: 40px;border-bottom: 1px solid #ccc;}
 .grzxbj .selfinfo .rtcont .grzlbt{width:938px;height: 60px;line-height: 60px;font-size: 20px;color:rgb(117,117,117);}
 .grzxbj .selfinfo .rtcont .subgrzl{height: 45px;line-height: 50px;width: 938px;background: rgb(253,253,253);border:0px solid #aaa;margin-top: 20px;border-radius: 3px;}

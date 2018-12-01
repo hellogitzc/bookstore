@@ -9,7 +9,7 @@ public interface UserService {
 
 	public void register(User user);
 	
-	public User user_info(String username);
+	public User user_info(Integer userid);
 
 	public int changePassword(String username, String password);
 

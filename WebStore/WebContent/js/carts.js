@@ -9,7 +9,9 @@ $(function () {
     $wholeChexbox = $('.whole_check'),
     $cartBox = $('.cartBox'),                       //每个商铺盒子
     $shopCheckbox = $('.shopChoice'),               //每个商铺的checkbox
-    $sonCheckBox = $('.son_check');                 //每个商铺下的商品的checkbox
+    $sonCheckBox = $('.son_check');
+	var checkID = [];
+	//每个商铺下的商品的checkbox
     $allCheckbox.click(function () {
     if ($(this).is(':checked')) {
         $(this).next('label').addClass('mark');
@@ -40,6 +42,7 @@ $sonCheckBox.each(function () {
             var num = 0;
             $sonCheckBox.each(function () {
                 if ($(this).is(':checked')) {
+                	
                     num++;
                 }
             });
@@ -134,20 +137,39 @@ $cartBox.each(function () {
             $priceTotalObj = $(this).parents('.order_lists').find('.sum_price'),
             $price = $(this).parents('.order_lists').find('.price').html(),  //单价
             $priceTotal = $count*parseFloat($price);
+            $order_lists = $(this).parents('.order_lists');
+            $userid = parseInt($order_lists.find('.userid').val());
+            $bookid = parseInt($order_lists.find('.bookid').val());
         $inputVal.val($count);
+
         $priceTotalObj.html('￥'+$priceTotal.toFixed(2));
         if($inputVal.val()>1 && $obj.hasClass('reSty')){
             $obj.removeClass('reSty');
         }
+        
+    	$.ajax({ 
+    		type: "post",  
+    		url: "/WebStore/updateSumAndNum", 
+    		data:'userid='+$userid +'&bookid='+$bookid+'&num='+$count+'&sum='+$priceTotal.toFixed(2),
+    		success: function (data) { 
+    		if (bukeyi.d == 'true') {    
+    		} 
+    		}
+    	});
         totalMoney();
     });
 
     $reduce.click(function () {
+    	
         var $inputVal = $(this).next('input'),
             $count = parseInt($inputVal.val())-1,
             $priceTotalObj = $(this).parents('.order_lists').find('.sum_price'),
             $price = $(this).parents('.order_lists').find('.price').html(),  //单价
             $priceTotal = $count*parseFloat($price);
+            $order_lists = $(this).parents('.order_lists');
+            $userid = parseInt($order_lists.find('.userid').val());
+            $bookid = parseInt($order_lists.find('.bookid').val()); 
+           
         if($inputVal.val()>1){
             $inputVal.val($count);
             $priceTotalObj.html('￥'+$priceTotal.toFixed(2));
@@ -155,6 +177,16 @@ $cartBox.each(function () {
         if($inputVal.val()==1 && !$(this).hasClass('reSty')){
             $(this).addClass('reSty');
         }
+        
+        $.ajax({ 
+    		type: "post",  
+    		url: "/WebStore/updateSumAndNum", 
+    		data:'userid='+$userid +'&bookid='+$bookid+'&num='+$count+'&sum='+$priceTotal,
+    		success: function (data) { 
+    		if (bukeyi.d == 'true') {    
+    		} 
+    		}
+    	});
         totalMoney();
     });
 
@@ -187,6 +219,7 @@ $cartBox.each(function () {
         $bookid = parseInt($order_lists.find('.bookid').val());
         $('.model_bg').fadeIn(300);
         $('.my_model').fadeIn(300);
+      
     });
 
     //关闭模态框
@@ -219,22 +252,67 @@ $cartBox.each(function () {
         closeM();
         $sonCheckBox = $('.son_check');
         totalMoney();
-    })
-
+    });
+  
+    $('.calBtn a').click(function(){
+    	  var cartList=[];
+    	if($(this).hasClass('btn_sty')){
+    		var i=0;
+        	$sonCheckBox.each(function () {
+                if ($(this).is(':checked')) {
+                    var sum = parseFloat($(this).parents('.order_lists').find('.sum_price').html().substring(1));
+                    var num =  parseInt($(this).parents('.order_lists').find('.sum').val());
+                    var price = parseFloat($(this).parents('.order_lists').find('.price').html());
+                    var userid=parseInt($(this).parents('.order_lists').find('.userid').val());
+                    var bookid = parseInt($(this).parents('.order_lists').find('.bookid').val());
+                    var id = parseInt($(this).parents('.order_lists').find('.id').val());
+                    var bookname = $(this).parents('.order_lists').find('.list_text a').html();
+                    var bookpic = $(this).parents('.order_lists').find('.pic').val();
+                    cartList[i]=new Object();
+                    cartList[i].id=id;
+                    cartList[i].userid=userid;
+                    cartList[i].bookid=bookid;               
+                    cartList[i].bookname=bookname;
+                    cartList[i].bookpic=bookpic;
+                    cartList[i].sum=sum;
+                    cartList[i].num=num;
+                    cartList[i].price=price;
+                    i=i+1;
+                }})
+                 
+                $.ajax({
+                	type:"post",  
+            		url: "/WebStore/getSelectedBook", 
+            	    traditional:true,
+            	    cache: false,//禁用缓存
+            		async:false,
+            	    contentType: "application/json; charset=utf-8",
+                    data:JSON.stringify(cartList),
+            		success: function (data) {
+            			
+            		}
+                })
+                $('#jiesuan').submit();
+               
+    	}
+        })
     //======================================总计==========================================
 
     function totalMoney() {
         var total_money = 0;
         var total_count = 0;
         var calBtn = $('.calBtn a');
-        $sonCheckBox.each(function () {
+        $sonCheckBox.each(function (i) {
             if ($(this).is(':checked')) {
                 var goods = parseFloat($(this).parents('.order_lists').find('.sum_price').html().substring(1));
                 var num =  parseInt($(this).parents('.order_lists').find('.sum').val());
+               
                 total_money += goods;
                 total_count += num;
             }
+           
         });
+        
         $('.total_text').html('￥'+total_money.toFixed(2));
         $('.piece_num').html(total_count);
 
@@ -249,7 +327,8 @@ $cartBox.each(function () {
                 calBtn.removeClass('btn_sty');
             }
         }
+        
     }
-
+        
 
 });

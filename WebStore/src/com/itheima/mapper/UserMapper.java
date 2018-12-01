@@ -35,7 +35,7 @@ public interface UserMapper {
 
 	public void register(User user);
 	
-	public User user_info(@Param("username") String username);
+	public User user_info(@Param("userid") Integer userid);
 
 	public int changePassWord(@Param("username")String username, @Param("password")String password);
 

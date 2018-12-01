@@ -4,7 +4,7 @@ import com.itheima.po.Cart;
 import com.itheima.po.CartExample;
 import com.itheima.po.CartKey;
 
-import java.math.BigDecimal;
+
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -36,8 +36,13 @@ public interface CartMapper {
 	List<Cart> searchCart(@Param("userid")Integer userid);
 
 	Cart check(@Param("userid")Integer userid, @Param("bookid")Integer bookid);
-
+	
+	Cart selectById(@Param("id")Integer id);
 	void updateNum(Cart cart);
 
-	void deleteItems(@Param("userid")Integer userid,  @Param("bookid")Integer bookid);	
+	void deleteItems(@Param("userid")Integer userid,  @Param("bookid")Integer bookid);
+
+	void updateSumAndNum(@Param("userid")Integer userid, @Param("bookid")Integer bookid,@Param("num") Integer num, @Param("sum")Float sum);
+
+	int updateStatus(@Param("id")Integer id);	
 }

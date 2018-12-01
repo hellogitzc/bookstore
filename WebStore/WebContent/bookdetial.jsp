@@ -8,30 +8,47 @@
 <link rel="stylesheet" type="text/css" href="./css/style.css">
 <title>书籍详情</title>
      <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+  
 <script type="text/javascript">
+
 function addCart(){ 
-	
+	var cart={
+		userid:parseInt('${user.userid}'),
+	    bookid:parseInt('${book.bookid}'),
+	    num: parseInt($(".num").val()),
+	    sum: parseFloat($("#total").html().trim()).toFixed(2),
+	    bookname:'${book.bookname}',
+	    price:'${book.price}',
+	    bookpic:'${book.bookpic}'
+	};
+
+	$.ajax({
+		url:"/WebStore/addCart",
+		type:"post",
+        async:false,
+        cache:false,
+        data:JSON.stringify(cart),
+        contentType:"application/json ; charset=UTF-8",
+        dataType:"json",
+        success:function(data){
+           
+        }
+		});
+    alert("该商品已经成功添加到购物车！")
+    
+};
+
+function createOrder(){
 	var price= '${book.price}';
-	document.charset='UTF-8'
-	alert(document.getElementById('bookname').value);
+	document.charset='UTF-8';
+	
 	document.getElementById('num').value = parseInt($(".num").val());
 	
 	document.getElementById('sum').value = document.getElementById("total").innerText;
 	
-   document.form1.action="/WebStore/addCart";
+    document.form1.action="/WebStore/createOrderItems";
     document.form1.submit();
-    alert("该商品已经成功添加到购物车！")
-}
-function createOrder(){
-	var s=0;
-	document.charset='UTF-8'
-	var price= '${book.price}';
-	document.num.value = parseInt($(".num").val());
-	s += parseInt($(".num").val())*price;
-	doucument.sum.value = s;
-       
-    document.form1.action="/WebStore/createOrder";
-    document.form1.submit();
+    
     }
 	
 $(document).ready(function(){
@@ -83,6 +100,11 @@ $(document).ready(function(){
                 </div>	
 			</div>
 				<div class="bot mt20 ft20 ftbc">总计：<label id="total"></label></div>
+			
+			<div class="xiadan ml20 mt20">
+			<c:if test="${not empty user.userid}">
+			       
+			<input type="hidden" name="status" value="1"/>
 			<input type="hidden" name="bookid" value="${book.bookid}">
 			<input type="hidden" name="bookname" id="bookname" value="${book.bookname}">
 			<input type="hidden" name="userid" value="${user.userid}">
@@ -90,10 +112,8 @@ $(document).ready(function(){
 			<input type="hidden" name="bookpic" value="${book.bookpic}">
 			<input type="hidden" name="num" id="num">
 			<input type="hidden" name="sum" id="sum">
-			<div class="xiadan ml20 mt20">
-			<c:if test="${not empty user.userid}">
 					<input class="jrgwc"  type="button"  value="立即选购" onclick="createOrder()" />
-					<input class="jrgwc" type="button"  value="加入购物车" onclick="addCart()" />
+					<input class="jrgwc" type="button"  id="gwc" value="加入购物车" onclick="addCart()" />
 			</c:if>	
 			<c:if test="${empty user.userid}"><input type="text"  class="jrgwc" value="请先登录，再进行选购" disabled/></c:if>
 			</div>

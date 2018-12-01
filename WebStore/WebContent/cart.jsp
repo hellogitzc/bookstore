@@ -18,9 +18,12 @@
 <title>我的购物车</title>
 <script type="text/javascript">
 
+
 </script>
+
 </head>
 <!-- start banner_x -->
+
 		<div class="banner_x center">
 			<a href="index.jsp" target="_blank"><div class="logo fl"></div></a>
 			<div class="wdgwc fl ml40">我的购物车</div>
@@ -50,8 +53,8 @@
             <c:forEach items="${cartList}" var="cart" varStatus="cartList">
                 <ul class="order_lists">
                     <li class="list_chk">
-                        <input type="checkbox" id="${cart.bookid}"class="son_check">
-                        <label for="${cart.bookid}"></label>
+                        <input type="checkbox" id="${cart.id}"class="son_check">
+                        <label for="${cart.id}"></label>
                     </li>
                     <li class="list_con">
                         <div class="list_img"><a href="javascript:;"><img src="${pageContext.request.contextPath}/${cart.bookpic}" alt="" width="80px" height="100px"></a></div>
@@ -77,20 +80,24 @@
                     <li class="">
                      <input type="hidden" name="userid"  class="userid" value="${cart.userid}">
                      <input type="hidden" name="bookid"  class="bookid"  value="${cart.bookid}">
+                     <input type="hidden" name="id"  class="id"  value="${cart.id}">
+                     <input type="hidden" name="id"  class="pic"  value="${cart.bookpic}">
                     </li>
                 </ul>
-                
-                   
-             
                 </c:forEach>
+                  <form action="${pageContext.request.contextPath}/createOrder" id="jiesuan" method="post">
+                   <input type="hidden" name="userid"  class="userid" value="${cartList[0].userid}">
+                  </form>
 		</div>
 		</div>
 		
 		<div class="bar-wrapper">
+		
             <div class="bar-right">
                 <div class="piece">已选商品<strong class="piece_num">0</strong>件</div>
                 <div class="totalMoney">共计: <strong class="total_text">0.00</strong></div>
-                <div class="calBtn"><a href="javascript:;">结算</a></div>
+                <div class="calBtn"><a id="submit">结算</a></div> 
+              
             </div>
         </div>
 		</section>
@@ -102,7 +109,5 @@
         <div class="opBtn"><a href="javascript:;" class="dialog-sure">确定</a><a href="javascript:;" class="dialog-close">关闭</a></div>
     </section>
 	<!-- footer -->
-	
-
 	</body>
 </html>

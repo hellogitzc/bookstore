@@ -54,4 +54,10 @@ public List<Book> SelectByBookTypeId(Integer booktypeid) {
 	return this.bookMapper.SelectByBookTypeId(booktypeid);
 }
 
+@Override
+public List<Book> selectByName(String bookname) {
+	// TODO Auto-generated method stub
+	return this.bookMapper.selectByName(bookname);
+}
+
 }

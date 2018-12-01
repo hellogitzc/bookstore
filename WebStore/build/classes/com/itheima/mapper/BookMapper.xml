@@ -317,5 +317,10 @@
   insert into book(booktypeid,bookname,bookpress,author,bookinfo,price,bookpic) 
   values(#{booktypeid},#{bookname},#{bookpress},#{author},#{bookinfo},#{price},#{bookpic})  
  </insert>
- 
+  
+   <select id="selectByName" resultMap="BaseResultMap">
+    select * 
+    from book
+    where bookname LIKE CONCAT(CONCAT('%', #{bookname}), '%')
+  </select>
 </mapper>

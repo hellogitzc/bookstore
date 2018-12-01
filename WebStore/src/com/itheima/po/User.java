@@ -21,6 +21,8 @@ public class User implements Serializable{
     private String address;
 
     private String sex;
+    
+    private Address addresses;
 
     public Integer getUserid() {
         return userid;
@@ -77,4 +79,12 @@ public class User implements Serializable{
     public void setSex(String sex) {
         this.sex = sex == null ? null : sex.trim();
     }
+
+	public Address getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(Address addresses) {
+		this.addresses = addresses;
+	}
 }

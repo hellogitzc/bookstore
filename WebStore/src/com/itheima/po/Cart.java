@@ -12,6 +12,7 @@ public class Cart extends CartKey {
     private BigDecimal price;
     
     private String  bookpic;
+    private Integer status;
 
     public Integer getNum() {
         return num;
@@ -51,5 +52,13 @@ public class Cart extends CartKey {
 
 	public void setBookpic(String bookpic) {
 		this.bookpic = bookpic;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 }

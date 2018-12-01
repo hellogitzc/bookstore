@@ -86,6 +86,9 @@
             margin-left: 650px ;
             margin-top:-45px;
         }
-.button{height: 50px;line-height: 50px;margin-left:260px;margin-top:10px;}
-.button .save{height: 50px;width: 200px;border:none;background:#ff6700;color:#fff;font-size: 18px;font-weight: bold;cursor:pointer;margin-right: 50px;}
+.bt_button{height: 50px;line-height: 50px;margin-top:10px;margin-left:150px}
+.bt_button .save1{height: 50px;width: 180px;border:none;background:#ff6700;color:#fff;font-size: 18px;font-weight: bold;cursor:pointer;margin-right: 50px;}      
+.bt_button .save1:hover{border:1px solid #fff;} 
+.button{height: 50px;line-height: 50px;margin-top:10px;}
+.button .save{margin-left:160px;height: 50px;width: 200px;border:none;background:#ff6700;color:#fff;font-size: 18px;font-weight: bold;cursor:pointer;margin-right: 50px;}
 .button .save:hover{border:1px solid #fff;} 
